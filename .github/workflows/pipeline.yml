@@ -64,5 +64,5 @@ jobs:
         path: my-next-app/.next/server/app
  
     - name: Deploy to S3
-      if: github.event_name == 'workflow_dispatch' && contains(github.event.head_commit.message, 'DEPLOY PRODUCTION')
+      if: github.event_name == 'workflow_dispatch' && contains(github.event.head_commit.message, 'DEPLOY PRODUCTIO')
       run: aws s3 cp my-next-app/.next/server/app s3://production-conchayoro-rfg --recursive --acl public-read
