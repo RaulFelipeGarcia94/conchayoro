@@ -43,7 +43,7 @@ jobs:
         name: build
         path: my-next-app/.next/server/app
     - name: Deploy to Homologation
-      run: aws s3 cp my-next-app/.next/server/app s3://homologation-conchayoro-rfg --recursive --acl public-read
+      run: aws s3 cp my-next-app/.next/server/app s3://homologation-bucket --recursive --acl public-read
  
  
   deploy:
@@ -64,5 +64,5 @@ jobs:
         path: my-next-app/.next/server/app
  
     - name: Deploy to S3
-      if: github.event_name == 'workflow_dispatch' && contains(github.event.head_commit.message, 'DEPLOY PRODUCTIO')
-      run: aws s3 cp my-next-app/.next/server/app s3://production-conchayoro-rfg --recursive --acl public-read
+      if: github.event_name == 'workflow_dispatch' && contains(github.event.head_commit.message, 'DEPLOY PRODUCTION')
+      run: aws s3 cp my-next-app/.next/server/app s3://production-bucket --recursive --acl public-read
