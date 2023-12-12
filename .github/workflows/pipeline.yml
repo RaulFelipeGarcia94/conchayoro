@@ -12,15 +12,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           cache: 'npm'
+
+      - name: Change to app directory
+        run: cd my-next-app
+
       - name: Install frontend dependencies
-        run: npm --prefix my-next-app install
+        run: npm install
+
       - name: Build frontend
-        run: npm --prefix my-next-app run build
+        run: npm run build
+
       - name: Upload frontend build
         uses: actions/upload-artifact@v3
         with:
