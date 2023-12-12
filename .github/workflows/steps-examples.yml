@@ -9,13 +9,13 @@ jobs:
   marketplace:
     runs-on: ubuntu-latest
     steps:
-    - name: Configuração do Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14
+      - name: Configuração do Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
 
-    - name: verification of node version
-      run: node --version
+      - name: verification of node version
+        run: node --version
 
   hello_world_job:
     runs-on: ubuntu-latest
@@ -23,9 +23,12 @@ jobs:
     steps:
       - name: Checkout Actions
         uses: actions/checkout@v2
-      - id: step-caller
-        uses: "./.github/actions/hello"
-        with:
-          the-caller: 'Myself'
+
+      - name: Hello World Action
+        id: step-caller
+        run: |
+          output=$(./.github/actions/hello)
+          echo "::set-output name=random-number::$output"
+
       - run: echo random-number ${{ steps.step-caller.outputs.random-number }}
         shell: bash
