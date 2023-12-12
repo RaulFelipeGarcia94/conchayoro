@@ -18,9 +18,9 @@ jobs:
           node-version: '18'
           cache: 'npm'
       - name: Install frontend dependencies
-        run: npm --prefix my-next-app install
+        run: npm --prefix frontend install
       - name: Build frontend
-        run: npm --prefix my-next-app run build
+        run: npm --prefix frontend run build
       - name: Upload frontend build
         uses: actions/upload-artifact@v3
         with:
@@ -35,7 +35,6 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
       AWS_EC2_METADATA_DISABLED: true
-      HOMOLOGATION_BUCKET: homologation-conchayoro-rfg
 
     steps:
       - name: Download frontend build artifact
@@ -54,7 +53,6 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
       AWS_EC2_METADATA_DISABLED: true
-      PRODUCTION_BUCKET: production-conchayoro-rfg
 
     steps:
       - name: Download frontend build artifact
