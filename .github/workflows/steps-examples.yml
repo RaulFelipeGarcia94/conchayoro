@@ -6,11 +6,13 @@ on:
       - main
 
 jobs:
-  jobx:
+  marketplace:
     runs-on: ubuntu-latest
     steps:
     - name: Configuração do Node.js
       uses: actions/setup-node@v3
+      with:
+        node-version: 14
 
     - name: verification of node version
       run: node --version
